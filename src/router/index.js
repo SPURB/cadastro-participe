@@ -5,7 +5,8 @@ import Cadastro from '@/components/Cadastro'
 Vue.use(Router)
 
 export default new Router({
-	routes: [
+	// mode: 'history',
+	routes: [		
 		{
 			path: '/',
 			name: 'Cadastro',

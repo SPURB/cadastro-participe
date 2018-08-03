@@ -3,7 +3,7 @@
     <h2>Fique por dentro e contribua com os projetos para a cidade!</h2>
     <br />
     <!-- TODO: Trocar por url relativa -->
-    <form id="formCadastro" accept-charset="utf-8" @submit="signup" action="http://localhost/cadastro-participe/dist/signup_participe.php" method="POST">
+    <form id="formCadastro" accept-charset="utf-8" @submit="signup" action="/wp-content/plugins/cadastro-participe/cadastro-participe.php" method="POST">
       <span>Nome*</span><br />
       <input  v-model="nome"
               name="nome" 
@@ -430,6 +430,7 @@ export default {
       // Verificar CEP
       this.errCep = !this.cep;
       if (!this.errCep && !this.errName && !this.errMail) {
+        window.alert("Obrigado por sua participação!");
         return true;
       }      
       window.alert("Por favor, preencha os dados corretamente para efetuar seu cadastro.");      
