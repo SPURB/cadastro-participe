@@ -27,6 +27,7 @@ button {
   border-radius: 1px;
   min-height: $line-h-size;
   max-width: 200px;
+  cursor: pointer;
 }
 .double-col {
   display: flex;
@@ -53,6 +54,58 @@ button {
   height: $line-h-size;
   padding: 0;
 }
+.question-tip{
+  width: 18px;
+  height: 14px;
+  border-radius: 100%;
+  text-align: center;
+  margin: auto 5px;
+  color: #fff;
+  font-weight: bolder;
+  font-size: small;
+  padding: 3px 1px 1px;
+  background-color: #ff7171;
+  font-family: sans-serif;
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+.question-tip::after {
+  display: block;
+  content: "?";
+}
+// tooltip
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: $primary-color;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: $primary-color transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
 #btn-cadastrar {
   width: 110px;
   margin-left: calc(100% - 110px);

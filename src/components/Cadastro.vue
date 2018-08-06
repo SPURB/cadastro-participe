@@ -1,6 +1,6 @@
 <template>
   <div id="app-content-wrapper">
-    <h2>Fique por dentro e contribua com os projetos para a cidade!</h2>
+    <h2>Fique por dentro dos projetos para a cidade!</h2>
     <br />
     <!-- TODO: Trocar por url relativa -->
     <form id="formCadastro" accept-charset="utf-8" @submit="signup" action="/wp-content/plugins/cadastro-participe/cadastro-participe.php" method="POST">
@@ -30,7 +30,7 @@
         {{ local.endereco }}
       </div><br />
       <div class="double-col">
-        <button type="" v-on:click.stop.prevent="getGeoLocation()">
+        <button v-on:click.stop.prevent="getGeoLocation()">
           <div class="icon-wrapper">
             <div class="pin icon"></div>
           </div>
@@ -64,6 +64,11 @@
             <div class="plus icon"></div>
           </div>
         </button>
+        <div class="question-tip tooltip">
+          <span class="tooltiptext">
+            Clique para adicionar mais itens
+          </span>
+        </div>
       </div>
       <br />
       <div class="full-w-flex">
@@ -76,6 +81,11 @@
             <div class="plus icon"></div>
           </div>
         </button>
+        <div class="question-tip tooltip">
+          <span class="tooltiptext">
+            Clique para adicionar mais itens
+          </span>
+        </div>
       </div>
       <br />
       <div v-if="regioes[0] || projetos[0]">
@@ -395,11 +405,11 @@ export default {
       let app = this;
       for (var prefeitura in this.listaRegioesInt) {
         addAll ? this.addItem(prefeitura, true) : this.removeItem(prefeitura, true);        
-      }
+      }/*
       setTimeout(function(){ 
         app.$refs.cadastroButton.focus();
         app.$refs.cadastroButton.scrollIntoView();
-       }, 200);
+       }, 200);*/
     },
     removeItem(selItem, isRegion) {
       if(isRegion){
