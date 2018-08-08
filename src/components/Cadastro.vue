@@ -2,7 +2,6 @@
   <div id="app-content-wrapper">
     <h2>Fique por dentro dos projetos para a cidade!</h2>
     <br />
-    <!-- TODO: Trocar por url relativa -->
     <form id="formCadastro" accept-charset="utf-8" @submit="signup" action="/wp-content/plugins/cadastro-participe/cadastro-participe.php" method="POST">
       <span>Nome*</span><br />
       <input  v-model="nome"
@@ -405,11 +404,10 @@ export default {
       let app = this;
       for (var prefeitura in this.listaRegioesInt) {
         addAll ? this.addItem(prefeitura, true) : this.removeItem(prefeitura, true);        
-      }/*
+      }
       setTimeout(function(){ 
-        app.$refs.cadastroButton.focus();
-        app.$refs.cadastroButton.scrollIntoView();
-       }, 200);*/
+        app.$refs.cadastroButton.scrollIntoView({block: 'end', behavior: 'smooth'});
+       }, 200);
     },
     removeItem(selItem, isRegion) {
       if(isRegion){
@@ -440,9 +438,21 @@ export default {
       // Verificar CEP
       this.errCep = !this.cep;
       if (!this.errCep && !this.errName && !this.errMail) {
+        // Verifica se foi selecionada ao menos uma regiao ou projeto
+        if (!this.regioes[0] && !this.projetos[0]) {
+          let allRegs = window.confirm("Você não selecionou nenhuma região ou projeto específico. Deseja monitorar todas as regiões?");        
+          if(!allRegs){
+            window.alert("Selecione um projeto ou região de interesse.");
+            e.preventDefault();
+            return false;
+          }
+          else {
+            this.allRegions(true);
+          }
+        }
         window.alert("Obrigado por sua participação!");
         return true;
-      }      
+      }
       window.alert("Por favor, preencha os dados corretamente para efetuar seu cadastro.");      
       e.preventDefault();
     }
