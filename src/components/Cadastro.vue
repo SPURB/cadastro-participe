@@ -54,7 +54,7 @@
       <br />
       <!-- Adicionar Regiões e Projetos de Interesse -->
       <div class="full-w-flex">
-        <select v-model="regiaoSel">
+        <select v-model="regiaoSel" v-on:change="addItem(regiaoSel, true)">
           <option disabled value="">Regiões de Interesse</option>
           <option v-for="regiao in listaRegioesInt">{{ regiao.prefeitura }}</option>
         </select>
@@ -71,7 +71,7 @@
       </div>
       <br />
       <div class="full-w-flex">
-        <select v-model="projetoSel">
+        <select v-model="projetoSel" v-on:change="addItem(projetoSel, false)">
           <option disabled value="">Projetos de Interesse</option>
           <option v-for="projeto in listaProjetosInt">{{ projeto }}</option>
         </select>
