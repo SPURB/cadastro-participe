@@ -362,12 +362,14 @@ export default {
     showPosition(position) {
       this.local.lat = position.coords.latitude;
       this.local.lon = position.coords.longitude;
-
+      console.log(position);
       // Requisitar AJAX de: 
-      // let cepRequest = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+position.coords.latitude+"&lon="+position.coords.latitude;
-      let cepRequest = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=true";
+      let cepRequest = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+position.coords.latitude+"&lon="+position.coords.longitude;
+      // let cepRequest = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=true";
       axios.get(cepRequest).then(response => {
-        this.local.endereco = this.filterReverseGeoData(response.data.results);
+        console.log(response);
+        // this.local.endereco = this.filterReverseGeoData(response.data.results);
+        this.cep = response.data.address.postcode;
         this.getAddress();
       })
       .catch(error => {
